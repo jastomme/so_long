@@ -9,16 +9,16 @@
 # include <string.h>
 # include <fcntl.h>
 # include <X11/X.h>
-# include <mlx.h>
+#include "../mlx/mlx.h"
 # include <X11/keysym.h>
 # include "../libft/libft.h"
 # define TILE_SIZE 120
-# define TEXTURE_WALL "/home/jastomme/git/so_long/textures/4wall.xpm"
-# define TEXTURE_C "/home/jastomme/git/so_long/textures/1collectible.xpm"
-# define TEXTURE_GROUND "/home/jastomme/git/so_long/textures/3background.xpm"
-# define TEXTURE_EXIT_C "/home/jastomme/git/so_long/textures/5exit_closed.xpm"
-# define TEXTURE_EXIT_O "/home/jastomme/git/so_long/textures/2exit_open.xpm"
-# define TEXTURE_P "/home/jastomme/git/so_long/textures/0player.xpm"
+# define TEXTURE_WALL "textures/4wall.xpm"
+# define TEXTURE_C "textures/1collectible.xpm"
+# define TEXTURE_GROUND "textures/3background.xpm"
+# define TEXTURE_EXIT_C "textures/5exit_closed.xpm"
+# define TEXTURE_EXIT_O "textures/2exit_open.xpm"
+# define TEXTURE_P "textures/0player.xpm"
 
 
 # define ESC_KEY 65307
@@ -58,7 +58,7 @@ typedef struct s_game
 int		is_wall_line(const char *line, size_t width);
 char	get_char_at(t_map *head, size_t row, size_t col);
 void	set_char_at(t_map *head, size_t row, size_t col, char new_char);
-void	flood_fill(t_map *head, size_t x, size_t y);
+void	flood_fill(t_map *head, int x, int y);
 void	get_map_dimensions(t_map *head, size_t *width, size_t *height);
 
 //checking_it.c

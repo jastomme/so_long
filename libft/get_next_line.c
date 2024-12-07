@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
 
 char	*get_next_line(int fd)
 {
@@ -36,7 +37,7 @@ char	*get_next_line(int fd)
 		free(stash);
 		return (stash = 0);
 	}
-	line = extract_line(stash, line);
+	line = extract_line(stash);
 	stash = extract_new_stash(stash);
 	return (line);
 }
@@ -44,6 +45,7 @@ char	*get_next_line(int fd)
 char	*stash_filling(int fd, char *stash, char *buffer)
 {
 	ssize_t	nbytes;
+	char *temp;
 
 	nbytes = 1;
 	if (stash == NULL)
@@ -54,10 +56,13 @@ char	*stash_filling(int fd, char *stash, char *buffer)
 		if (nbytes == -1)
 		{
 			free (buffer);
+			free (stash);
 			return (NULL);
 		}
 		buffer[nbytes] = 0;
-		stash = ft_strjoin(stash, buffer);
+		temp  = ft_strjoin(stash, buffer);
+		free (stash);
+		stash = temp;
 		if ((ft_strchr(buffer, '\n')))
 			break ;
 	}
@@ -85,9 +90,10 @@ char	*extract_new_stash(char *stash)
 	return (new_stash);
 }
 
-char	*extract_line(char *stash, char *line)
+char	*extract_line(char *stash)
 {
 	size_t	len;
+	char *line;
 
 	len = 0;
 	if (stash == NULL)
@@ -96,7 +102,7 @@ char	*extract_line(char *stash, char *line)
 		len++;
 	if (stash [len] == '\n')
 		len++;
-	line = malloc((len + 1) * sizeof(char));
+	line = malloc(sizeof(char) * len + 1);
 	if (line == NULL)
 		return (NULL);
 	ft_strlcpy(line, stash, len + 1);

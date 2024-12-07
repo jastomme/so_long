@@ -63,7 +63,7 @@ void	set_char_at(t_map *head, size_t row, size_t col, char new_char)
 	temp->line[col] = new_char;
 }
 
-void	flood_fill(t_map *head, size_t x, size_t y)
+void	flood_fill(t_map *head, int x, int y)
 {
 	size_t		width;
 	size_t		height;
@@ -72,14 +72,14 @@ void	flood_fill(t_map *head, size_t x, size_t y)
 	width = 0;
 	height = 0;
 	get_map_dimensions(head, &width, &height);
-	if (x < 0 || x >= height || y < 0 || y >= width)
+	if (x < 0 || (size_t)x >= height || y < 0 || (size_t)y >= width)
 		return ;
-	current_char = get_char_at(head, x, y);
+	current_char = get_char_at(head, (size_t)x, (size_t)y);
 	if (current_char == '1' || current_char == 'F' || current_char == 'Z')
 		return ;
 	if (current_char == 'C' || current_char == 'E' || current_char == '0'
 		|| current_char == 'P')
-		set_char_at(head, x, y, 'F');
+		set_char_at(head, (size_t)x, (size_t)y, 'F');
 	flood_fill(head, x + 1, y);
 	flood_fill(head, x - 1, y);
 	flood_fill(head, x, y + 1);

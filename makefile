@@ -14,10 +14,11 @@ CC = @cc
 RM = @rm -f
 LIBFT_DIR = ./libft
 MLX_DIR = ./mlx
-CFLAGS =  -g -Wall -Werror -Wextra -Iinclude/mlx
-MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+CFLAGS =  -g -Wall -Werror -Wextra -I$(MLX_DIR)
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -lX11 -lXext -lm
 # here to add libs from gnl
 LIBS = $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a
+
 OBJS =	$(SRCS:.c=.o)
 
 all: $(NAME)

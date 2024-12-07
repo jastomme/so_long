@@ -75,6 +75,7 @@ int	main(int ac, char **av)
 		ft_printf("ERROR: Invalid ammount of arguments.\n");
 		exit(0);
 	}
+	ft_memset(&game, 0, sizeof(t_game)); //added
 	game.map = map_to_list(av[1]);
 	good_input(&game);
 	free_list(game.map);

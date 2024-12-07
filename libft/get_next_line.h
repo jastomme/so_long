@@ -23,6 +23,6 @@
 char	*get_next_line(int fd);
 char	*stash_filling(int fd, char *stash, char *buffer);
 char	*extract_new_stash(char *stash);
-char	*extract_line(char *stash, char *line);
+char	*extract_line(char *stash);
 
 #endif

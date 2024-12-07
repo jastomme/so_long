@@ -81,6 +81,7 @@ void init_window(t_game *game)
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
 		exit_game(game, "ERROR: mlx init");
+	usleep(100000);
 	game->win= mlx_new_window(game->mlx, win_width, win_height, "so_long");
 	if (!game->win)
 		exit_game(game, "ERROR: win init");
